@@ -4,121 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>东方月初 - 涂山红红</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://serv.200038.xyz/2024/09/19/481552.webp');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .description {
-            color: rgb(34, 30, 104);
-            font-size: 17px;
-            line-height: 25px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .minifont {
-            color: rgb(34, 30, 104);
-            font-size: 11.9531px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            padding: 20px;
-            width: 450px;
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-container {
-            width: 170px;
-            height: 170px;
-        }
-        .logo {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 7px solid white;
-            animation: blink 0.35s infinite;
-        }
-        .status-dot {
-            width: 30px;
-            height: 30px;
-            background: #6bdf8f;
-            border-radius: 50%;
-            border: 10px solid #fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(32px, -90px);
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        h1 {
-            color: rgb(34, 30, 104);
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        /* Footer Styles */
-        .footer {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        #jsi-flying-fish-container {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100px;
-            z-index: 9999;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex-grow: 1;
-        }
-    </style>    
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -131,116 +17,7 @@
         <span class="minifont">📢东方月初~ 🤣涂山红红!!! 📈今日访问人数: <span id="visitCount">加载中...</span></span>
     </div>
 
-    <script>
-        // 通过fetch获取API并展示visitCount
-        fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
-            .then(r => r.json())  // 转换为JSON
-            .then(d => document.getElementById('visitCount').innerText = d.visitCount)  // 显示visitCount
-            .catch(e => document.getElementById('visitCount').innerText = '加载失败');  // 错误处理
-
-        const urls = [
-            "https://blog.200036.xyz#Netlify CDN",
-            "https://hexo.200038.xyz#Cloudflare CDN",
-            "https://fastly.hexo.200038.xyz#fastly CDN",
-            "https://www.weilai.us.kg#备用地址"
-        ];
-
-        // 动态生成URL列表
-        const ul = document.getElementById("urls");
-        urls.forEach((url, index) => {
-            const [testUrl, name] = url.split('#');
-            const li = document.createElement("li");
-            li.id = `result${index}`;
-            li.innerHTML = `${name} <span id="latency${index}">测速中...</span>`;
-            ul.appendChild(li);
-        });
-
-        const timeout = 3000;
-
-        function testLatency(url) {
-            return new Promise((resolve) => {
-                const start = Date.now();
-                const xhr = new XMLHttpRequest();
-                xhr.open('HEAD', url, true);
-                xhr.timeout = timeout;
-
-                xhr.onload = function () {
-                    const latency = Date.now() - start;
-                    if (xhr.status === 200) {
-                        resolve({ url, latency });
-                    } else {
-                        resolve({ url, latency: `状态码: ${xhr.status}` });
-                    }
-                };
-
-                xhr.ontimeout = function () {
-                    resolve({ url, latency: `响应超时 ${timeout}ms` });
-                };
-
-                xhr.onerror = function () {
-                    resolve({ url, latency: '请求失败' });
-                };
-
-                xhr.send();
-            });
-        }
-
-        // 获取延迟的颜色
-        function getLatencyColor(latency) {
-            if (latency <= 100) return 'rgb(36, 170, 29)';
-            if (latency <= 200) return 'rgb(142, 161, 40)';
-            if (latency <= 500) return 'rgb(246, 152, 51)';
-            if (latency <= 1000) return 'rgb(242, 118, 42)';
-            if (latency > 1000) return 'rgb(236, 70, 28)';
-            return 'rgb(230, 22, 16)';  // 超时或错误
-        }
-
-        async function runTests() {
-            const results = await Promise.all(urls.map(url => {
-                const [testUrl, name] = url.split('#');
-                return testLatency(testUrl).then(result => ({
-                    ...result,
-                    name
-                }));
-            }));
-
-            results.forEach((result, index) => {
-                const li = document.getElementById(`result${index}`);
-                const latencySpan = document.getElementById(`latency${index}`);
-                if (typeof result.latency === 'number') {
-                    latencySpan.textContent = `${result.latency}ms`;
-                    latencySpan.style.color = getLatencyColor(result.latency);
-                } else {
-                    latencySpan.textContent = result.latency;
-                    latencySpan.style.color = 'rgb(230, 22, 16)'; // 超时或错误用红色
-                }
-            });
-
-            const validResults = results.filter(result => typeof result.latency === 'number');
-            if (validResults.length > 0) {
-                const fastest = validResults.reduce((prev, current) => (prev.latency < current.latency ? prev : current), validResults[0]);
-
-                // 标记最快的 CDN
-                results.forEach((result, index) => {
-                    if (result.name === fastest.name) {
-                        const li = document.getElementById(`result${index}`);
-                        li.innerHTML += ' ✅';
-                    }
-                });
-
-                // 302跳转到最快的地址并保留路径和参数
-                const currentPath = '/';
-                const currentParams = '';
-                const redirectUrl = fastest.url + currentPath + currentParams;
-
-                // 302 跳转
-                window.location.href = redirectUrl;
-            }
-        }
-
-        window.onload = runTests;
-    </script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772e2f1c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8e283612cdf2e2f1","version":"2024.10.5","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"3fe5aaae3aef425d9c775b0551fadca7","b":1}' crossorigin="anonymous"></script>
+    <script src="static/js/script.js"></script> <!-- 引入外部JS -->
     <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
     <div class="st-Container">
         <a style="display:none" class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
@@ -253,14 +30,14 @@
     <!-- Footer section -->
     <div class="footer">
         <!-- Your footer content can go here -->
-
-    <span>© 2024 东方月初. All Rights Reserved.</span>
-
-
+        <span>© 2024 CMLiussss. All Rights Reserved.</span>
         <!-- Flying fish container -->
         <div id="jsi-flying-fish-container" class="fish-container"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js"></script>
+</body>
+</html>
+    
 </body>
 </html>
