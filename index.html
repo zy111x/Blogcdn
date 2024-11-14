@@ -5,100 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMLiussss Blog - CM喂饭干货满满</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        /* Basic Reset and Background */
+        * {
             margin: 0;
             padding: 0;
-            background-image: url('https://pic.imgdb.cn/item/66f6af86f21886ccc048a443.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e3f2fd, #e1bee7);
+            color: #222;
         }
+
+        /* Container Styling */
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 20px;
-            width: 450px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in-out;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
         }
+
+        /* Logo and Header */
         .logo-container {
             position: relative;
-            width: 120px;
-            height: 120px;
-            margin-bottom: 15px;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             animation: blink 1.5s infinite;
         }
         .logo {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
         }
         h1 {
-            color: rgb(34, 30, 104);
             font-size: 24px;
             font-weight: bold;
-            text-align: center;
-            margin: 10px 0;
-        }
-        .description {
-            color: rgb(34, 30, 104);
-            font-size: 16px;
-            width: 100%;
-            text-align: left;
+            color: #4A148C;
             margin-bottom: 10px;
         }
+
+        /* Description List */
+        .latency-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
         .latency-list li {
-            padding: 10px 15px;
-            margin: 8px 0;
-            border-radius: 10px;
-            background-color: rgba(240, 240, 240, 0.8);
+            background: #f7f7f9;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 10px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            color: rgb(34, 30, 104);
             font-size: 16px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .latency-list li.highlight {
-            background-color: rgba(36, 170, 29, 0.2);
-            color: rgb(34, 30, 104);
+            color: #333;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         }
         .latency {
-            font-size: 14px;
-        }
-        .latency-fast { color: rgb(36, 170, 29); }
-        .latency-medium { color: rgb(142, 161, 40); }
-        .latency-slow { color: rgb(246, 152, 51); }
-        .latency-error { color: rgb(230, 22, 16); }
-        .minifont {
-            color: rgb(34, 30, 104);
-            font-size: 12px;
-            margin-top: 15px;
-            text-align: center;
-        }
-        .fastest-label {
-            color: rgb(36, 170, 29);
-            font-size: 14px;
             font-weight: bold;
-            margin-left: 5px;
+            font-size: 14px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            color: white;
         }
+        .latency-fast { background-color: #4CAF50; }
+        .latency-medium { background-color: #FFCA28; }
+        .latency-slow { background-color: #FF7043; }
+        .latency-error { background-color: #E57373; }
+
+        /* Fastest Label */
+        .fastest-label {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 3px 6px;
+            border-radius: 5px;
+            margin-left: 8px;
+        }
+
+        /* Footer Text */
+        .minifont {
+            font-size: 12px;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
     </style>
 </head>
@@ -108,7 +120,7 @@
             <img class="logo" src="https://raw.cmliussss.com/IMG_0038.png" alt="Logo">
         </div>
         <h1>BlogCDN 智能访问网关</h1>
-        <ul class="description latency-list" id="urls"></ul>
+        <ul class="latency-list" id="urls"></ul>
         <span class="minifont">📢 杨幂只是xp~ 🤣 CM才是id!!! 📈 今日访问人数: <span id="visitCount">加载中...</span></span>
         <span id="redirectingMessage" class="minifont" style="display:none;">正在跳转至最快的CDN...</span>
     </div>
@@ -133,7 +145,7 @@
             const [testUrl, name] = url.split('#');
             const li = document.createElement("li");
             li.id = `result${index}`;
-            li.innerHTML = `${name} <span id="latency${index}" class="latency">测速中...</span>`;
+            li.innerHTML = `${name} <span id="latency${index}" class="latency latency-error">测速中...</span>`;
             ul.appendChild(li);
         });
 
@@ -177,8 +189,8 @@
                 results.forEach((result, index) => {
                     if (result.name === fastest.name) {
                         const li = document.getElementById(`result${index}`);
-                        li.classList.add("highlight");
-                        li.innerHTML += ' <span class="fastest-label">FASTEST</span>';
+                        li.innerHTML += ' <span class="fast
+est-label">FASTEST</span>';
                     }
                 });
 
