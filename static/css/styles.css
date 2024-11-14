@@ -1,0 +1,108 @@
+/* GitHub-like Reset and Basic Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center;
+    background-size: cover;
+    color: #24292e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 20px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo and Header */
+.logo-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid #e1e4e8;
+}
+.logo {
+    width: 100%;
+    height: 100%;
+}
+h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #24292e;
+    margin-bottom: 10px;
+}
+
+/* Latency List */
+.latency-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0;
+}
+.latency-list li {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #586069;
+}
+.latency {
+    font-weight: 600;
+    font-size: 13px;
+    color: #0366d6;
+}
+
+/* Status Badge for Fastest CDN */
+.fastest-label {
+    background-color: #28a745;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+/* Footer Text */
+.minifont {
+    font-size: 12px;
+    color: #586069;
+    margin-top: 20px;
+}
+
+/* Button Style */
+.btn {
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 16px;
+    margin-top: 15px;
+    color: #fff;
+    background-color: #0366d6;
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #0353c4;
+}
