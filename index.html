@@ -10,22 +10,26 @@
         .footer {
             position: relative;
             width: 100%;
-            min-height: 100px; /* Adjust this for the height of your footer */
+            height: 150px; /* Increase the height of the footer to make room for the fish container */
             background-color: #333;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            flex-direction: column;
+            overflow: hidden; /* Ensure the fish container stays within the footer */
         }
 
         /* Fish container at the bottom of the footer */
         #jsi-flying-fish-container {
             position: absolute;
-            bottom: 10px; /* Position it just above the footer area */
+            bottom: 0; /* Position it at the very bottom of the footer */
             left: 50%;
             transform: translateX(-50%); /* Center the fish horizontally */
-            z-index: 9999; /* Make sure it's on top of other footer content */
+            width: 100%; /* Make the fish container span the full width of the footer */
+            height: 100px; /* Adjust the height of the fish container */
+            z-index: 9999; /* Ensure it's on top of other footer content */
         }
 
         /* Optional: Ensure the rest of the page content doesn't overlap the footer */
