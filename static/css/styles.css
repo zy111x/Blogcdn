@@ -1,3 +1,11 @@
+/* Universal reset for margin and padding */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global body styles */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     margin: 0;
@@ -9,38 +17,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    color: #fff;
 }
-.description {
-    color: rgb(34, 30, 104);
-    font-size: 17px;
-    line-height: 25px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: left;
-}
-.minifont {
-    color: rgb(34, 30, 104);
-    font-size: 11.9531px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
+
+/* Container with flexbox for center alignment */
 .container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
     width: 450px;
-    height: 600px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Logo container styles */
 .logo-container {
-    width: 170px;
-    height: 170px;
+    width: 180px;
+    height: 180px;
+    margin-bottom: 20px;
 }
+
+/* Logo styles and blinking animation */
 .logo {
     width: 100%;
     height: 100%;
@@ -48,6 +49,8 @@ body {
     border: 7px solid white;
     animation: blink 0.35s infinite;
 }
+
+/* Status dot animation for blinking */
 .status-dot {
     width: 30px;
     height: 30px;
@@ -59,23 +62,125 @@ body {
     left: 50%;
     transform: translate(32px, -90px);
 }
+
+/* Blink animation for logo */
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
 }
+
+/* Header styles */
 h1 {
-    color: rgb(34, 30, 104);
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 40px;
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 20px;
     margin-bottom: 20px;
+    color: rgb(34, 30, 104);
+    text-align: center;
 }
+
+/* Description text style */
+.description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgb(34, 30, 104);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Smaller font text for mini descriptions */
+.minifont {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(34, 30, 104);
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Styling for list items */
 ul {
     list-style: none;
     padding: 0;
+    width: 100%;
+    margin-bottom: 20px;
 }
-/* Footer Styles */
+
+li {
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: rgba(34, 30, 104, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for list items */
+li:hover {
+    background-color: rgba(34, 30, 104, 0.2);
+}
+
+/* Styling for spans inside list items */
+span {
+    font-weight: bold;
+}
+
+/* Latency classes for different latency statuses */
+.latency {
+    font-size: 14px;
+}
+
+.latency-fast {
+    color: rgb(36, 170, 29);
+}
+
+.latency-medium {
+    color: rgb(142, 161, 40);
+}
+
+.latency-slow {
+    color: rgb(242, 118, 42);
+}
+
+.latency-error {
+    color: rgb(236, 70, 28);
+}
+
+/* Checkmark icon styling for fastest CDN */
+.checkmark {
+    color: #6bdf8f;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/* Redirecting message styling */
+.redirecting {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(34, 30, 104);
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Spinner animation while redirecting */
+.spinner {
+    margin-left: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #6bdf8f;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+/* Spinner animation keyframes */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer styles for additional information */
 .footer {
     position: relative;
     width: 100%;
@@ -89,6 +194,7 @@ ul {
     flex-direction: column;
     overflow: hidden;
 }
+
 #jsi-flying-fish-container {
     position: absolute;
     bottom: 0;
@@ -98,11 +204,13 @@ ul {
     height: 100px;
     z-index: 9999;
 }
+
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
+
 .container {
     flex-grow: 1;
 }
