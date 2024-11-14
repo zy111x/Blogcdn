@@ -6,16 +6,40 @@
     <title>CMLiussss Blog - CM喂饭干货满满</title>
     <link rel="stylesheet" href="static/css/styles.css"> <!-- 引入外部CSS -->
     <style>
-        /* Ensure the fish container is positioned at the bottom */
-        #jsi-flying-fish-container {
-            position: fixed;
-            left: 50%; /* Center the fish horizontally */
-            transform: translateX(-50%); /* Center the fish horizontally */
-            bottom: 10px; /* Position it just above the footer */
-            z-index: 9999; /* Ensure it's visible above other content */
+        /* Make sure the footer spans the full width and is always at the bottom */
+        .footer {
+            position: relative;
+            width: 100%;
+            min-height: 100px; /* Adjust this for the height of your footer */
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        /* Optional: Add any other styles you need for positioning */
+        /* Fish container at the bottom of the footer */
+        #jsi-flying-fish-container {
+            position: absolute;
+            bottom: 10px; /* Position it just above the footer area */
+            left: 50%;
+            transform: translateX(-50%); /* Center the fish horizontally */
+            z-index: 9999; /* Make sure it's on top of other footer content */
+        }
+
+        /* Optional: Ensure the rest of the page content doesn't overlap the footer */
+        body {
+            min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex-grow: 1; /* Allow the main content area to grow and push the footer to the bottom */
+        }
+
+        /* Optional: Add other styles for the footer and content */
         .st-Container {
             position: fixed;
             z-index: 9998;
@@ -52,8 +76,13 @@
         <div class="layer eyes w100" data-depth="0.2"></div>
     </div>
     
-    <!-- Flying fish container -->
-    <div id="jsi-flying-fish-container" class="fish-container"></div>
+    <!-- Footer section -->
+    <div class="footer">
+        <!-- Your footer content can go here -->
+        <span>© 2024 CMLiussss. All Rights Reserved.</span>
+        <!-- Flying fish container -->
+        <div id="jsi-flying-fish-container" class="fish-container"></div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js"></script>
 </body>
