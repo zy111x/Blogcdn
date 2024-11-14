@@ -1,95 +1,92 @@
-const urls = [
-    { url: 'https://blog.cmliussss.com', name: 'Cloudflare CDN' },
-    { url: 'https://fastly.blog.cmliussss.com', name: 'Fastly CDN' },
-    { url: 'https://gcore.blog.cmliussss.com', name: 'Gcore CDN' },
-    { url: 'https://vercel.blog.cmliussss.com', name: 'Vercel CDN' },
-    { url: 'https://xn--1uto7rutmzjk.us.kg', name: '备用地址' }
-];
+// Static visit count for demonstration on GitHub Pages (as no dynamic API can be used here)
+document.getElementById('visitCount').innerText = "1234"; // Static number for GitHub Pages
 
-const timeout = 3000; // Timeout for latency test
+const urls = ["https://blog.cmliussss.com#Cloudflare CDN", "https://fastly.blog.cmliussss.com#Fastly CDN", 
+              "https://gcore.blog.cmliussss.com#Gcore CDN", "https://vercel.blog.cmliussss.com#Vercel CDN", 
+              "https://xn--1uto7rutmzjk.us.kg#备用地址"];
 
-// Helper function to test latency
-async function testLatency(url) {
-    const start = Date.now();
-    try {
-        const response = await fetch(url, { method: 'HEAD', timeout });
-        const latency = Date.now() - start;
-        if (response.ok) {
-            return { url, latency };
-        } else {
-            return { url, latency: `Status Code: ${response.status}` };
-        }
-    } catch (error) {
-        return { url, latency: error.message };
-    }
-}
+<script>
+    // 获取访问人数并更新页面
+    fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
+      .then(response => response.json())
+      .then(data => {
+        const visitCount = data.visitCount; // 提取访问人数
+        document.getElementById('visitCount').innerText = visitCount; // 更新页面显示的访问人数
+        alert(`当前访问人数: ${visitCount}`); // 弹出提示框显示访问人数
+      })
+      .catch(error => {
+        console.error('加载访问人数失败:', error);
+        document.getElementById('visitCount').innerText = '加载失败'; // 错误处理
+      });
+</script>
 
-// Function to generate HTML content
-function generateHTML(results, visitCount) {
-    let listItems = results.map((result, index) => {
-        const latencyText = typeof result.latency === 'number' ? `${result.latency}ms` : result.latency;
-        const latencyColor = getLatencyColor(result.latency);
-        const fastestBadge = result.isFastest ? ' ✅' : '';
-        return `<li id="result${index}" style="color: ${latencyColor};">${result.name} ${latencyText}${fastestBadge}</li>`;
-    }).join('');
-
-    return `
-    <ul class="description" id="urls">${listItems}</ul>
-    <span class="minifont">📢杨幂只是xp~ 🤣CM才是id!!! 📈今日访问人数:${visitCount}</span>
-    `;
-}
-
-// Get latency color based on response time
-function getLatencyColor(latency) {
-    if (typeof latency === 'number') {
-        if (latency <= 100) return 'rgb(36, 170, 29)';
-        if (latency <= 200) return 'rgb(142, 161, 40)';
-        if (latency <= 500) return 'rgb(246, 152, 51)';
-        if (latency <= 1000) return 'rgb(242, 118, 42)';
-        return 'rgb(236, 70, 28)';
-    }
-    return 'rgb(230, 22, 16)';
-}
-
-// Cloudflare Worker fetch event handler
-addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request));
+// Generate URL list
+const ul = document.getElementById("urls");
+urls.forEach((url, index) => {
+    const [testUrl, name] =
+    url.split('#');
+    const li = document.createElement("li");
+    li.id = `result${index}`;
+    li.innerHTML = `${name} <span id="latency${index}" class="latency">测速中...</span>`;
+    ul.appendChild(li);
 });
 
-async function handleRequest(request) {
-    // Fetch the visit count from your API
-    let visitCount = '加载中...'; // Default text for visit count
-    try {
-        const response = await fetch('https://tongji.090227.xyz/?id=blog.cmliussss.com');
-        const data = await response.json();
-        visitCount = data.visitCount;
-    } catch (error) {
-        visitCount = '加载失败';
-    }
+const timeout = 3000;
 
-    // Test the latency of the URLs
-    const results = await Promise.all(urls.map(async (urlObj, index) => {
-        const result = await testLatency(urlObj.url);
-        return {
-            ...result,
-            name: urlObj.name,
-            isFastest: false
-        };
-    }));
-
-    // Find the fastest CDN and mark it
-    const fastest = results.reduce((prev, current) => (prev.latency < current.latency ? prev : current), results[0]);
-    results.forEach(result => {
-        if (result.latency === fastest.latency) {
-            result.isFastest = true;
-        }
-    });
-
-    // Generate HTML content
-    const html = generateHTML(results, visitCount);
-
-    // Return HTML response
-    return new Response(html, {
-        headers: { 'Content-Type': 'text/html' }
+// Mock Latency Test Function for demonstration
+function testLatency(url) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const latency = Math.floor(Math.random() * 1000); // Mock latency for GitHub Pages
+            resolve({ url, latency });
+        }, timeout);
     });
 }
+
+// Get Latency Color
+function getLatencyClass(latency) {
+    if (latency <= 100) return 'latency-fast';
+    if (latency <= 200) return 'latency-medium';
+    if (latency <= 500) return 'latency-slow';
+    return 'latency-error';
+}
+
+async function runTests() {
+    const results = await Promise.all(urls.map(url => {
+        const [testUrl, name] = url.split('#');
+        return testLatency(testUrl).then(result => ({
+            ...result,
+            name
+        }));
+    }));
+
+    results.forEach((result, index) => {
+        const li = document.getElementById(`result${index}`);
+        const latencySpan = document.getElementById(`latency${index}`);
+        latencySpan.textContent = `${result.latency}ms`;
+        latencySpan.className = getLatencyClass(result.latency);
+    });
+
+    const validResults = results.filter(result => typeof result.latency === 'number');
+    if (validResults.length > 0) {
+        const fastest = validResults.reduce((prev, current) => (prev.latency < current.latency ? prev : current), validResults[0]);
+
+        // Mark fastest CDN
+        results.forEach((result, index) => {
+            if (result.name === fastest.name) {
+                const li = document.getElementById(`result${index}`);
+                li.innerHTML += ' <span class="checkmark">✅</span>';
+            }
+        });
+
+        // Show redirecting message
+        document.getElementById('redirectingMessage').style.display = 'block';
+
+        // Redirect to the fastest CDN
+        setTimeout(() => {
+            window.location.href = fastest.url;
+        }, 2000); // Wait for 2 seconds before redirecting
+    }
+}
+
+window.onload = runTests;
