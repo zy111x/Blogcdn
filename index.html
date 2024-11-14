@@ -4,54 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMLiussss Blog - CM喂饭干货满满</title>
-    <link rel="stylesheet" href="/static/css/styles.css"> <!-- 引入外部CSS -->
     <style>
-        /* Make sure the footer spans the full width and is always at the bottom */
-        .footer {
-            position: relative;
-            width: 100%;
-            height: 150px; /* Increase the height of the footer to make room for the fish container */
-            background-color: #333;
-            color: white;
+        /* 全局设置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://pic.imgdb.cn/item/66f6c978f21886ccc06c2337.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        /* 容器样式 */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
             padding: 20px;
-            flex-direction: column;
-            overflow: hidden; /* Ensure the fish container stays within the footer */
-        }
-
-        /* Fish container at the bottom of the footer */
-        #jsi-flying-fish-container {
-            position: absolute;
-            bottom: 0; /* Position it at the very bottom of the footer */
-            left: 50%;
-            transform: translateX(-50%); /* Center the fish horizontally */
-            width: 100%; /* Make the fish container span the full width of the footer */
-            height: 100px; /* Adjust the height of the fish container */
-            z-index: 9999; /* Ensure it's on top of other footer content */
-        }
-
-        /* Optional: Ensure the rest of the page content doesn't overlap the footer */
-        body {
-            min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+            width: 450px;
+            height: 600px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .container {
-            flex-grow: 1; /* Allow the main content area to grow and push the footer to the bottom */
+        /* Logo 和状态点样式 */
+        .logo-container {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            margin-bottom: 20px;
         }
 
-        /* Optional: Add other styles for the footer and content */
-        .st-Container {
-            position: fixed;
-            z-index: 9998;
+        .logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 7px solid white;
+            animation: blink 0.35s infinite;
         }
 
-        .sw-Hennnyano {
-            position: fixed;
-            z-index: 9997;
+        .status-dot {
+            width: 30px;
+            height: 30px;
+            background: #6bdf8f;
+            border-radius: 50%;
+            border: 10px solid #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(32px, -90px);
+        }
+
+        /* 动画 */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        h1 {
+            color: rgb(34, 30, 104);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            color: rgb(34, 30, 104);
+            font-size: 17px;
+            line-height: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .minifont {
+            color: rgb(34, 30, 104);
+            font-size: 11.9531px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        li {
+            padding: 10px;
+            margin-bottom: 15px;
+            background: rgba(34, 30, 104, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        li:hover {
+            background: rgba(34, 30, 104, 0.2);
+        }
+
+        .latency { font-size: 14px; }
+        .latency-fast { color: rgb(36, 170, 29); }
+        .latency-medium { color: rgb(142, 161, 40); }
+        .latency-slow { color: rgb(246, 152, 51); }
+        .latency-error { color: rgb(236, 70, 28); }
+        .checkmark { color: #6bdf8f; font-size: 20px; margin-left: 10px; }
+
+        .redirecting {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .spinner {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #6bdf8f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* 动画 */
+        @keyframes spin {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -64,30 +158,86 @@
         <h1>BlogCDN 智能访问网关</h1>
         <ul class="description" id="urls"></ul>
         <span class="minifont">📢杨幂只是xp~ 🤣CM才是id!!! 📈今日访问人数:<span id="visitCount">加载中...</span></span>
-        <div id="redirectingMessage" class="redirecting" style="display:none;">
-            <span>正在跳转至最快的CDN</span>
-            <div class="spinner"></div>
-        </div>
     </div>
 
-    <script src="/static/js/script.js"></script> <!-- 引入外部JS -->
-    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
-    <div class="st-Container">
-        <a style="display:none" class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
-    </div>
-    <div class="sw-Hennnyano" id="sw-Hennnyano">
-        <div class="layer body w100" data-depth="0.1"></div>
-        <div class="layer eyes w100" data-depth="0.2"></div>
-    </div>
-    
-    <!-- Footer section -->
-    <div class="footer">
-        <!-- Your footer content can go here -->
-        <span>© 2024 CMLiussss. All Rights Reserved.</span>
-        <!-- Flying fish container -->
-        <div id="jsi-flying-fish-container" class="fish-container"></div>
-    </div>
+    <script>
+        // 通过fetch获取API并展示visitCount
+        fetch('https://tongji.090227.xyz/?id=blog.cmliussss.com')
+            .then(r => r.json()) // 转换为JSON
+            .then(d => document.getElementById('visitCount').innerText = d.visitCount) // 显示visitCount
+            .catch(e => document.getElementById('visitCount').innerText = '加载失败'); // 错误处理
 
-    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js"></script>
-</body>
-</html>
+        const urls = ["https://blog.cmliussss.com#Cloudflare CDN", "https://fastly.blog.cmliussss.com#Fastly CDN", "https://gcore.blog.cmliussss.com#Gcore CDN", "https://vercel.blog.cmliussss.com#Vercel CDN", "https://xn--1uto7rutmzjk.us.kg#备用地址"];
+        
+        // 动态生成URL列表
+        const ul = document.getElementById("urls");
+        urls.forEach((url, index) => {
+            const [testUrl, name] = url.split('#');
+            const li = document.createElement("li");
+            li.id = `result${index}`;
+            li.innerHTML = `${name} <span id="latency${index}">测速中...</span>`;
+            ul.appendChild(li);
+        });
+
+        const timeout = 3000;
+
+        function testLatency(url) {
+            return new Promise((resolve) => {
+                const start = Date.now();
+                const xhr = new XMLHttpRequest();
+                xhr.open('HEAD', url, true);
+                xhr.timeout = timeout;
+
+                xhr.onload = function () {
+                    const latency = Date.now() - start;
+                    if (xhr.status === 200) {
+                        resolve({ url, latency });
+                    } else {
+                        resolve({ url, latency: `状态码: ${xhr.status}` });
+                    }
+                };
+
+                xhr.ontimeout = function () {
+                    resolve({ url, latency: `响应超时 ${timeout}ms` });
+                };
+
+                xhr.onerror = function () {
+                    resolve({ url, latency: '请求失败' });
+                };
+
+                xhr.send();
+            });
+        }
+
+        // 获取延迟的颜色
+        function getLatencyColor(latency) {
+            if (latency <= 100) return 'rgb(36, 170, 29)';
+            if (latency <= 200) return 'rgb(142, 161, 40)';
+            if (latency <= 500) return 'rgb(246, 152, 51)';
+            if (latency <= 1000) return 'rgb(242, 118, 42)';
+            if (latency > 1000) return 'rgb(236, 70, 28)';
+            return 'rgb(230, 22, 16)';  // 超时或错误
+        }
+
+        async function runTests() {
+            const results = await Promise.all(urls.map(url => {
+                const [testUrl, name] = url.split('#');
+                return testLatency(testUrl).then(result => ({
+                    ...result,
+                    name
+                }));
+            }));
+
+            results.forEach((result, index) => {
+                const li = document.getElementById(`result${index}`);
+                const latencySpan = document.getElementById(`latency${index}`);
+                if (typeof result.latency === 'number') {
+                    latencySpan.textContent = `${result.latency}ms`;
+                    latencySpan.style.color = getLatencyColor(result.latency);
+                } else {
+                    latencySpan.textContent = result.latency;
+                    latencySpan.style.color = 'rgb(230, 22, 16)'; // 超时或错误用红色
+                }
+            });
+
+            const validResults = results.filter(result => typeof result.latency === 'number
