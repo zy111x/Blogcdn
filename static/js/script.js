@@ -1,13 +1,23 @@
-// Static visit count for demonstration on GitHub Pages (as no dynamic API can be used here)
-document.getElementById('visitCount').innerText = "1234"; // Static number for GitHub Pages
+// Example of fetching visit count from the provided API
+document.getElementById('visitCount').innerText = "加载中...";  // Placeholder text
 
-const urls = [
-    "https://blog.cmliussss.com#Cloudflare CDN", 
-    "https://fastly.blog.cmliussss.com#Fastly CDN", 
-    "https://gcore.blog.cmliussss.com#Gcore CDN", 
-    "https://vercel.blog.cmliussss.com#Vercel CDN", 
-    "https://xn--1uto7rutmzjk.us.kg#备用地址"
-];
+// Fetch visitor count from the provided API
+fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
+    .then(response => response.json())  // Convert response to JSON
+    .then(data => {
+        // Display visit count from the API response
+        document.getElementById('visitCount').innerText = data.visitCount;
+    })
+    .catch(error => {
+        // If an error occurs, display '加载失败' (Failed to load)
+        console.error("Error fetching visit count:", error);
+        document.getElementById('visitCount').innerText = '加载失败';
+    });
+
+// Existing latency testing and redirecting functionality
+const urls = ["https://blog.cmliussss.com#Cloudflare CDN", "https://fastly.blog.cmliussss.com#Fastly CDN", 
+              "https://gcore.blog.cmliussss.com#Gcore CDN", "https://vercel.blog.cmliussss.com#Vercel CDN", 
+              "https://xn--1uto7rutmzjk.us.kg#备用地址"];
 
 // Generate URL list
 const ul = document.getElementById("urls");
@@ -31,7 +41,7 @@ function testLatency(url) {
     });
 }
 
-// Get Latency Class
+// Get Latency Color
 function getLatencyClass(latency) {
     if (latency <= 100) return 'latency-fast';
     if (latency <= 200) return 'latency-medium';
@@ -39,7 +49,6 @@ function getLatencyClass(latency) {
     return 'latency-error';
 }
 
-// Run latency tests and show results
 async function runTests() {
     const results = await Promise.all(urls.map(url => {
         const [testUrl, name] = url.split('#');
