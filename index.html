@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMLiussss Blog - CM喂饭干货满满</title>
     <link rel="stylesheet" href="static/css/styles.css"> <!-- 引入外部CSS -->
+    <style>
+        /* Ensure the fish container is positioned at the bottom */
+        #jsi-flying-fish-container {
+            position: fixed;
+            left: 50%; /* Center the fish horizontally */
+            transform: translateX(-50%); /* Center the fish horizontally */
+            bottom: 10px; /* Position it just above the footer */
+            z-index: 9999; /* Ensure it's visible above other content */
+        }
+
+        /* Optional: Add any other styles you need for positioning */
+        .st-Container {
+            position: fixed;
+            z-index: 9998;
+        }
+
+        .sw-Hennnyano {
+            position: fixed;
+            z-index: 9997;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -22,18 +43,18 @@
     </div>
 
     <script src="static/js/script.js"></script> <!-- 引入外部JS -->
-<script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
-<div class="st-Container">
-    <a style='display:none' class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
-</div>
-<div class="sw-Hennnyano" id="sw-Hennnyano">
-    <div class="layer body w100" data-depth="0.1"></div>
-    <div class="layer eyes w100" data-depth="0.2"></div>
-</div>
-<script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/js/lib.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/js/parallax.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/js/app.bundle.js"></script>
-<div id="jsi-flying-fish-container" class="fish-container"></div>
-<script src='https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js'></script>
+    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
+    <div class="st-Container">
+        <a style="display:none" class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
+    </div>
+    <div class="sw-Hennnyano" id="sw-Hennnyano">
+        <div class="layer body w100" data-depth="0.1"></div>
+        <div class="layer eyes w100" data-depth="0.2"></div>
+    </div>
+    
+    <!-- Flying fish container -->
+    <div id="jsi-flying-fish-container" class="fish-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js"></script>
 </body>
 </html>
