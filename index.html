@@ -5,112 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMLiussss Blog - CM喂饭干货满满</title>
     <style>
-        /* Basic Reset and Background */
+        /* GitHub-like Reset and Basic Styling */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            background-color: #f6f8fa;
+            color: #24292e;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #e3f2fd, #e1bee7);
-            color: #222;
         }
 
-        /* Container Styling */
+        /* Container */
         .container {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
-            padding: 30px;
-            width: 400px;
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 20px;
+            width: 380px;
             text-align: center;
-            animation: fadeIn 0.8s ease-in-out;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Logo and Header */
         .logo-container {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             margin: 0 auto 20px;
             overflow: hidden;
             border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            animation: blink 1.5s infinite;
+            border: 3px solid #e1e4e8;
         }
         .logo {
             width: 100%;
             height: 100%;
         }
         h1 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #4A148C;
+            font-size: 20px;
+            font-weight: 600;
+            color: #24292e;
             margin-bottom: 10px;
         }
 
-        /* Description List */
+        /* Latency List */
         .latency-list {
             list-style-type: none;
             padding: 0;
             margin: 15px 0;
         }
         .latency-list li {
-            background: #f7f7f9;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin: 10px 0;
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 8px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 16px;
-            color: #333;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #586069;
         }
         .latency {
-            font-weight: bold;
-            font-size: 14px;
-            padding: 2px 8px;
-            border-radius: 8px;
-            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            color: #0366d6;
         }
-        .latency-fast { background-color: #4CAF50; }
-        .latency-medium { background-color: #FFCA28; }
-        .latency-slow { background-color: #FF7043; }
-        .latency-error { background-color: #E57373; }
 
-        /* Fastest Label */
+        /* Status Badge for Fastest CDN */
         .fastest-label {
-            background-color: #4CAF50;
+            background-color: #28a745;
             color: white;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: bold;
-            padding: 3px 6px;
-            border-radius: 5px;
+            padding: 2px 4px;
+            border-radius: 4px;
             margin-left: 8px;
         }
 
         /* Footer Text */
         .minifont {
             font-size: 12px;
-            color: #555;
+            color: #586069;
             margin-top: 20px;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Button Style */
+        .btn {
+            display: inline-block;
+            font-size: 14px;
+            padding: 8px 16px;
+            margin-top: 15px;
+            color: #fff;
+            background-color: #0366d6;
+            border: 1px solid rgba(27,31,35,.2);
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+        .btn:hover {
+            background-color: #0353c4;
         }
     </style>
 </head>
@@ -145,7 +145,7 @@
             const [testUrl, name] = url.split('#');
             const li = document.createElement("li");
             li.id = `result${index}`;
-            li.innerHTML = `${name} <span id="latency${index}" class="latency latency-error">测速中...</span>`;
+            li.innerHTML = `${name} <span id="latency${index}" class="latency">测速中...</span>`;
             ul.appendChild(li);
         });
 
@@ -160,13 +160,6 @@
             });
         }
 
-        function getLatencyClass(latency) {
-            if (latency <= 100) return 'latency-fast';
-            if (latency <= 200) return 'latency-medium';
-            if (latency <= 500) return 'latency-slow';
-            return 'latency-error';
-        }
-
         async function runTests() {
             const results = await Promise.all(urls.map(url => {
                 const [testUrl, name] = url.split('#');
@@ -179,7 +172,7 @@
             results.forEach((result, index) => {
                 const latencySpan = document.getElementById(`latency${index}`);
                 latencySpan.textContent = `${result.latency}ms`;
-                latencySpan.className = `latency ${getLatencyClass(result.latency)}`;
+                latencySpan.className = `latency`;
             });
 
             const validResults = results.filter(result => typeof result.latency === 'number');
@@ -190,7 +183,6 @@
                     if (result.name === fastest.name) {
                         const li = document.getElementById(`result${index}`);
                         li.innerHTML += ' <span class="fastest-label">FASTEST</span>';
-
                     }
                 });
 
