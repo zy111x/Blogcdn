@@ -4,7 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMLiussss Blog - CM喂饭干货满满</title>
-    <link rel="stylesheet" href="static/css/styles.css"> <!-- External CSS -->
+    <link rel="stylesheet" href="static/css/styles.css"> <!-- 引入外部CSS -->
+    <style>
+        /* Make sure the footer spans the full width and is always at the bottom */
+        .footer {
+            position: relative;
+            width: 100%;
+            height: 150px; /* Increase the height of the footer to make room for the fish container */
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            flex-direction: column;
+            overflow: hidden; /* Ensure the fish container stays within the footer */
+        }
+
+        /* Fish container at the bottom of the footer */
+        #jsi-flying-fish-container {
+            position: absolute;
+            bottom: 0; /* Position it at the very bottom of the footer */
+            left: 50%;
+            transform: translateX(-50%); /* Center the fish horizontally */
+            width: 100%; /* Make the fish container span the full width of the footer */
+            height: 100px; /* Adjust the height of the fish container */
+            z-index: 9999; /* Ensure it's on top of other footer content */
+        }
+
+        /* Optional: Ensure the rest of the page content doesn't overlap the footer */
+        body {
+            min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex-grow: 1; /* Allow the main content area to grow and push the footer to the bottom */
+        }
+
+        /* Optional: Add other styles for the footer and content */
+        .st-Container {
+            position: fixed;
+            z-index: 9998;
+        }
+
+        .sw-Hennnyano {
+            position: fixed;
+            z-index: 9997;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -21,17 +70,24 @@
         </div>
     </div>
 
+    <script src="static/js/script.js"></script> <!-- 引入外部JS -->
+    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
+    <div class="st-Container">
+        <a style="display:none" class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
+    </div>
+    <div class="sw-Hennnyano" id="sw-Hennnyano">
+        <div class="layer body w100" data-depth="0.1"></div>
+        <div class="layer eyes w100" data-depth="0.2"></div>
+    </div>
+    
+    <!-- Footer section -->
     <div class="footer">
-        <!-- Footer Content -->
-        <div class="footer-content">
-            <span>© 2024 CMLiussss. All Rights Reserved.</span>
-        </div>
-        <!-- Fish Container -->
+        <!-- Your footer content can go here -->
+        <span>© 2024 CMLiussss. All Rights Reserved.</span>
+        <!-- Flying fish container -->
         <div id="jsi-flying-fish-container" class="fish-container"></div>
     </div>
 
-    <script src="static/js/script.js"></script> <!-- External JS -->
-    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js"></script>
 </body>
 </html>
