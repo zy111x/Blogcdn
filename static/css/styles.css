@@ -15,6 +15,7 @@ body {
     background-position: center;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #fff;
@@ -32,6 +33,7 @@ body {
     justify-content: center;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     position: relative;
+    z-index: 1;
 }
 
 /* Logo Container */
@@ -100,16 +102,17 @@ h1 {
 
 /* Footer Styling */
 .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 40px 20px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Transparent background */
+    color: white;
+    padding: 20px 0;
     text-align: center;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
 /* Footer Content */
@@ -119,15 +122,20 @@ h1 {
     color: #aaa;
 }
 
+/* Footer Hover Effect */
+.footer:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 /* Fish Container Styling */
 #jsi-flying-fish-container {
     position: absolute;
-    bottom: 0;
+    bottom: -10px; /* Adjust to stick right below footer */
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 100px; /* Adjust height of the fish container */
-    z-index: 999;
+    height: 80px; /* Adjust height of the fish container */
+    z-index: 99;
 }
 
 /* Spinner Animation */
@@ -145,4 +153,24 @@ h1 {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Fish Animation (Optional customization) */
+.fish-container {
+    display: flex;
+    justify-content: space-around;
+    animation: fish-swim 5s ease-in-out infinite;
+}
+
+/* Fish Movement Animation */
+@keyframes fish-swim {
+    0% {
+        transform: translateX(-100px);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(-100px);
+    }
 }
