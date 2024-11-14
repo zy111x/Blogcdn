@@ -1,49 +1,53 @@
-/* 全局设置 */
-* {
-    box-sizing: border-box;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: url('https://api.nicea.us.kg/api.php') center/cover no-repeat;
+    background-image: url('https://serv.200038.xyz/2024/09/19/481552.webp');
+    background-size: cover;
+    background-position: center;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    flex-direction: column;
 }
-
-/* 容器样式 */
+.description {
+    color: rgb(34, 30, 104);
+    font-size: 17px;
+    line-height: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.minifont {
+    color: rgb(34, 30, 104);
+    font-size: 11.9531px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
 .container {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px;
     width: 450px;
-    height: auto;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
-
-/* Logo 和状态点样式 */
 .logo-container {
-    position: relative;
-    width: 260px;
-    height: 100px;
-    margin-bottom: 20px;
+    width: 170px;
+    height: 170px;
 }
-
 .logo {
     width: 100%;
+    height: 100%;
     border-radius: 50%;
-    border: 7px solid #fff;
+    border: 7px solid white;
     animation: blink 0.35s infinite;
 }
-
 .status-dot {
     width: 30px;
     height: 30px;
@@ -51,86 +55,54 @@ body {
     border-radius: 50%;
     border: 10px solid #fff;
     position: absolute;
-    top: 20px;
-    right: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(32px, -90px);
 }
-
-/* 文本样式 */
-h1, .minifont, .redirecting {
-    color: rgb(34, 30, 104);
-    text-align: center;
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
-
 h1 {
-    font-size: 26px;
-    font-weight: 700;
-    margin: 20px 0;
-}
-
-.minifont {
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-.description {
-    font-size: 15px;
     color: rgb(34, 30, 104);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
     margin-bottom: 20px;
-    line-height: 1.6;
-    text-align: left;
 }
-
-/* 列表样式 */
 ul {
     list-style: none;
     padding: 0;
+}
+/* Footer Styles */
+.footer {
+    position: relative;
     width: 100%;
-    margin-bottom: 20px;
-}
-
-li {
-    padding: 10px;
-    margin-bottom: 15px;
-    background: rgba(34, 30, 104, 0.1);
-    border-radius: 8px;
+    height: 150px;
+    background-color: #333;
+    color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    transition: background 0.3s ease;
+    padding: 20px;
+    flex-direction: column;
+    overflow: hidden;
 }
-
-li:hover {
-    background: rgba(34, 30, 104, 0.2);
+#jsi-flying-fish-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100px;
+    z-index: 9999;
 }
-
-.latency { font-size: 14px; }
-
-/* 延迟样式 */
-.latency-fast { color: rgb(36, 170, 29); }
-.latency-medium { color: rgb(142, 161, 40); }
-.latency-slow { color: rgb(242, 118, 42); }
-.latency-error { color: rgb(236, 70, 28); }
-
-/* 其他样式 */
-.checkmark { color: #6bdf8f; font-size: 20px; margin-left: 10px; }
-
-.redirecting {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 30px;
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-
-.spinner {
-    margin-left: 10px;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #6bdf8f;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.container {
+    flex-grow: 1;
 }
-
-/* 动画 */
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-@keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
