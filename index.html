@@ -241,3 +241,23 @@
             });
 
             const validResults = results.filter(result => typeof result.latency === 'number
+            // 标记最快的 CDN
+            results.forEach((result, index) => {
+                if (result.name === fastest.name) {
+                    const li = document.getElementById(`result${index}`);
+                    li.innerHTML += ' ✅';
+                }
+            });
+
+            // 302跳转到最快的地址并保留路径和参数
+            const currentPath = '/';
+            const currentParams = '';
+            const redirectUrl = fastest.url + currentPath + currentParams;
+
+            // 302 跳转
+            window.location.href = redirectUrl;
+        }
+    }
+
+    window.onload = runTests;
+</script>
