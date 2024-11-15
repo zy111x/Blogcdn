@@ -3,61 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMLiussss Blog - CM喂饭干货满满</title>
+    <title>CMLiussss Blog - 智能访问网关</title>
     <style>
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
             color: #fff;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             border-radius: 15px;
-            padding: 25px;
-            width: 420px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
+            overflow: hidden;
         }
+
         .logo-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 15px;
             position: relative;
         }
+
         .logo {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
             animation: pulse 2s infinite;
         }
+
         .status-dot {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background: #00c853;
             border-radius: 50%;
-            border: 3px solid #fff;
+            border: 4px solid white;
             position: absolute;
             top: -5px;
             right: -5px;
         }
+
         h1 {
-            font-size: 22px;
+            font-size: 20px;
             color: #333;
             margin-bottom: 20px;
         }
+
         ul {
             list-style: none;
             padding: 0;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
+
         li {
             background: rgba(100, 149, 237, 0.1);
             padding: 10px 15px;
@@ -68,29 +76,29 @@
             align-items: center;
             transition: background 0.3s ease;
         }
+
         li:hover {
             background: rgba(100, 149, 237, 0.2);
         }
+
         .latency {
             font-size: 14px;
             font-weight: bold;
         }
+
         .minifont {
             font-size: 12px;
             color: #555;
             margin-top: 15px;
         }
+
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
             }
             50% {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
             }
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
     </style>
 </head>
@@ -100,20 +108,12 @@
             <img class="logo" src="https://raw.cmliussss.com/IMG_0038.png" alt="Logo">
             <div class="status-dot"></div>
         </div>
-        <h1>BlogCDN 智能访问网关</h1>
-        <ul id="urls">
-            <!-- 动态生成 -->
-        </ul>
+        <h1>智能访问网关</h1>
+        <ul id="urls"></ul>
         <span class="minifont">📢 杨幂只是xp~ 🤣CM才是id!!! 📈 今日访问人数: <span id="visitCount">加载中...</span></span>
     </div>
 
     <script>
-        // 通过fetch获取API并展示visitCount
-        fetch('https://tongji.090227.xyz/?id=blog.cmliussss.com')
-            .then(r => r.json())
-            .then(d => document.getElementById('visitCount').innerText = d.visitCount)
-            .catch(() => document.getElementById('visitCount').innerText = '加载失败');
-
         const urls = [
             "https://blog.cmliussss.com#Cloudflare CDN",
             "https://fastly.blog.cmliussss.com#Fastly CDN",
@@ -131,35 +131,51 @@
             ul.appendChild(li);
         });
 
-        const timeout = 3000;
-
+        // 测试延迟
         async function testLatency(url) {
             return new Promise((resolve) => {
                 const start = Date.now();
                 const xhr = new XMLHttpRequest();
                 xhr.open('HEAD', url, true);
-                xhr.timeout = timeout;
+                xhr.timeout = 3000;
+
                 xhr.onload = function () {
                     const latency = Date.now() - start;
-                    resolve(xhr.status === 200 ? latency : `错误 ${xhr.status}`);
+                    resolve(xhr.status === 200 ? latency : Infinity);
                 };
-                xhr.onerror = () => resolve('请求失败');
-                xhr.ontimeout = () => resolve(`超时 >${timeout}ms`);
+
+                xhr.ontimeout = () => resolve(Infinity);
+                xhr.onerror = () => resolve(Infinity);
                 xhr.send();
             });
         }
 
+        // 运行延迟测试并自动跳转
         async function runTests() {
             const results = await Promise.all(urls.map((url, index) => {
                 const [testUrl] = url.split('#');
-                return testLatency(testUrl).then(latency => ({ index, latency }));
+                return testLatency(testUrl).then(latency => ({ index, latency, testUrl }));
             }));
+
             results.forEach(({ index, latency }) => {
                 const span = document.getElementById(`latency${index}`);
-                span.textContent = typeof latency === 'number' ? `${latency}ms` : latency;
-                span.style.color = typeof latency === 'number' && latency <= 300 ? '#00c853' : '#d32f2f';
+                span.textContent = latency === Infinity ? '超时' : `${latency}ms`;
+                span.style.color = latency <= 300 ? '#00c853' : latency <= 600 ? '#ff9800' : '#d32f2f';
             });
+
+            // 获取延迟最低的地址并跳转
+            const bestResult = results.filter(r => r.latency !== Infinity).sort((a, b) => a.latency - b.latency)[0];
+            if (bestResult) {
+                window.location.href = bestResult.testUrl + window.location.pathname + window.location.search;
+            }
         }
+
+        // 显示访问计数
+        fetch('https://tongji.090227.xyz/?id=blog.cmliussss.com')
+            .then(response => response.json())
+            .then(data => document.getElementById('visitCount').textContent = data.visitCount)
+            .catch(() => document.getElementById('visitCount').textContent = '加载失败');
+
         window.onload = runTests;
     </script>
 </body>
