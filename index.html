@@ -139,10 +139,12 @@
             .catch(e => document.getElementById('visitCount').innerText = '加载失败');  // 错误处理
 
         const urls = [
-            "https://blog.200036.xyz#Netlify CDN",
             "https://hexo.200038.xyz#Cloudflare CDN",
+            "https://vercel.hexo.200038.xyz#Vercel CDN",
+            "https://fastly.hexo.200038.xyz#Fastly CDN",
             "https://fastly.hexo.200038.xyz#fastly CDN",
             "https://www.weilai.us.kg#备用地址"
+
         ];
 
         // 动态生成URL列表
