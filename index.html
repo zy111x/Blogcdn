@@ -157,33 +157,16 @@
 
         const timeout = 3000;
 
-        function testLatency(url) {
-            return new Promise((resolve) => {
-                const start = Date.now();
-                const xhr = new XMLHttpRequest();
-                xhr.open('HEAD', url, true);
-                xhr.timeout = timeout;
+function testLatency(url) {
+    const start = Date.now();
+    return fetch(url, { method: 'HEAD', mode: 'no-cors' })
+        .then(response => {
+            const latency = Date.now() - start;
+            return response.ok ? { url, latency } : { url, latency: `状态码: ${response.status}` };
+        })
+        .catch(() => ({ url, latency: '请求失败' }));
+}
 
-                xhr.onload = function () {
-                    const latency = Date.now() - start;
-                    if (xhr.status === 200) {
-                        resolve({ url, latency });
-                    } else {
-                        resolve({ url, latency: `状态码: ${xhr.status}` });
-                    }
-                };
-
-                xhr.ontimeout = function () {
-                    resolve({ url, latency: `响应超时 ${timeout}ms` });
-                };
-
-                xhr.onerror = function () {
-                    resolve({ url, latency: '请求失败' });
-                };
-
-                xhr.send();
-            });
-        }
 
         // 获取延迟的颜色
         function getLatencyColor(latency) {
@@ -241,7 +224,14 @@
         window.onload = runTests;
     </script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772e2f1c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8e283612cdf2e2f1","version":"2024.10.5","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"3fe5aaae3aef425d9c775b0551fadca7","b":1}' crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
+    <div class="st-Container">
+        <a style="display:none" class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
+    </div>
+    <div class="sw-Hennnyano" id="sw-Hennnyano">
+        <div class="layer body w100" data-depth="0.1"></div>
+        <div class="layer eyes w100" data-depth="0.2"></div>
+    </div>
     
     <!-- Footer section -->
     <div class="footer">
