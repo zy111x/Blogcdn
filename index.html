@@ -133,10 +133,20 @@
 
     <script>
         // 通过fetch获取API并展示visitCount
-        fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
-            .then(r => r.json())  // 转换为JSON
-            .then(d => document.getElementById('visitCount').innerText = d.visitCount)  // 显示visitCount
-            .catch(e => document.getElementById('visitCount').innerText = '加载失败');  // 错误处理
+        //fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
+        //    .then(r => r.json())  // 转换为JSON
+        //    .then(d => document.getElementById('visitCount').innerText = d.visitCount)  // 显示visitCount
+        //    .catch(e => document.getElementById('visitCount').innerText = '加载失败');  // 错误处理
+       fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz', {
+           method: 'GET',
+           mode: 'cors',  // 确保启用跨域请求
+           headers: {
+            'Content-Type': 'application/json',  // 根据需要添加其他头
+           }
+       })
+          .then(r => r.json())
+          .then(d => document.getElementById('visitCount').innerText = d.visitCount)
+          .catch(e => document.getElementById('visitCount').innerText = '加载失败');
 
         const urls = [
             "https://hexo.200038.xyz#Cloudflare CDN",
