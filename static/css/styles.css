@@ -1,15 +1,8 @@
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://i1.wp.com/ruom.wuaze.com/i/2024/11/14/823094.webp');
+    background-image: url('');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -22,9 +15,9 @@ body {
 .container {
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
-    padding: 30px;
-    width: 450px;
-    height: auto;
+    padding: 20px; /* 减小内边距 */
+    width: 360px; /* 调整宽度 */
+    min-height: 400px; /* 设置最小高度 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,8 +26,8 @@ body {
 }
 
 .logo-container {
-    width: 180px;
-    height: 180px;
+    width: 150px; /* 缩小尺寸 */
+    height: 150px;
     margin-bottom: 20px;
 }
 
@@ -42,45 +35,31 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 7px solid white;
+    border: 6px solid white; /* 调整边框 */
     animation: blink 0.35s infinite;
 }
 
 .status-dot {
-    width: 30px;
-    height: 30px;
-    background: #6bdf8f;
-    border-radius: 50%;
-    border: 10px solid #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(32px, -90px);
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
+    width: 20px; /* 调整尺寸 */
+    height: 20px;
+    border: 7px solid #fff; /* 调整边框 */
+    transform: translate(25px, -80px); /* 根据尺寸重新调整位置 */
 }
 
 h1 {
-    font-size: 26px;
+    font-size: 22px; /* 调整字体大小 */
     font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px; /* 减小间距 */
+    margin-bottom: 15px;
     color: rgb(34, 30, 104);
     text-align: center;
 }
 
 .description {
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14px; /* 调整字体大小 */
+    line-height: 1.5; /* 调整行距 */
     color: rgb(34, 30, 104);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -96,12 +75,12 @@ ul {
     list-style: none;
     padding: 0;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 li {
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 8px; /* 缩小内边距 */
+    margin-bottom: 10px;
     background-color: rgba(34, 30, 104, 0.1);
     border-radius: 8px;
     display: flex;
@@ -119,7 +98,7 @@ span {
 }
 
 .latency {
-    font-size: 14px;
+    font-size: 13px; /* 调整字体大小 */
 }
 
 .latency-fast {
@@ -140,15 +119,15 @@ span {
 
 .checkmark {
     color: #6bdf8f;
-    font-size: 20px;
+    font-size: 18px; /* 缩小尺寸 */
     margin-left: 10px;
 }
 
 .redirecting {
-    font-size: 16px;
+    font-size: 15px; /* 调整字体大小 */
     font-weight: bold;
     color: rgb(34, 30, 104);
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -157,16 +136,7 @@ span {
     border: 3px solid rgba(255, 255, 255, 0.3);
     border-top: 3px solid #6bdf8f;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 16px; /* 缩小尺寸 */
+    height: 16px;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
