@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>东方月初 - 涂山红红</title>
+    <title>智能访问网关</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://api.nicea.us.kg/api.php');
+            background-image: url('https://serv.200038.xyz/2024/09/19/background.webp');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -32,24 +32,6 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            animation: blink 0.35s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
         h1 {
             font-size: 22px;
             font-weight: 700;
@@ -67,42 +49,39 @@
         }
 
         li {
-            padding: 8px;
+            padding: 12px;
             margin-bottom: 10px;
             background-color: rgba(34, 30, 104, 0.1);
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         li:hover {
             background-color: rgba(34, 30, 104, 0.2);
+            transform: translateY(-2px);
         }
 
         span {
             font-weight: bold;
         }
 
-        .latency {
-            font-size: 13px;
-        }
-
         .latency-fast {
-            color: rgb(36, 170, 29);
+            color: rgb(36, 170, 29); /* 绿色 */
         }
 
         .latency-medium {
-            color: rgb(142, 161, 40);
+            color: rgb(242, 185, 42); /* 黄色 */
         }
 
         .latency-slow {
-            color: rgb(242, 118, 42);
+            color: rgb(242, 118, 42); /* 橙色 */
         }
 
         .latency-error {
-            color: rgb(236, 70, 28);
+            color: rgb(236, 70, 28); /* 红色 */
         }
 
         .redirecting {
@@ -112,42 +91,19 @@
             margin-top: 20px;
             text-align: center;
         }
-
-        .spinner {
-            margin-left: 10px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid #6bdf8f;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo-container">
-            <img class="logo" src="https://serv.200038.xyz/2024/09/19/040857.webp" alt="Logo">
-        </div>
-        <h1>BlogCDN 智能访问网关</h1>
+        <h1>智能访问网关</h1>
         <ul id="urls"></ul>
         <div class="redirecting">
-            📢 东方月初 ~ 涂山红红! 今日访问人数: <span id="visitCount">加载中...</span>
+            🚀 正在跳转到最快的 CDN...
         </div>
     </div>
 
     <script>
-        // 动态加载访问人数
-        fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
-            .then(r => r.json())
-            .then(d => document.getElementById('visitCount').innerText = d.visitCount)
-            .catch(e => document.getElementById('visitCount').innerText = '加载失败');
-
+        // CDN 地址与描述
         const urls = [
             "https://hexo.200038.xyz#Cloudflare CDN",
             "https://vercel.hexo.200038.xyz#Vercel CDN",
@@ -156,6 +112,11 @@
         ];
 
         const ul = document.getElementById("urls");
+
+        // 初始化测速结果数组
+        const latencyResults = [];
+
+        // 创建列表项
         urls.forEach((url, index) => {
             const [testUrl, name] = url.split('#');
             const li = document.createElement("li");
@@ -163,27 +124,55 @@
             ul.appendChild(li);
         });
 
+        // 测试延迟函数
         async function testLatency(url) {
             const start = Date.now();
-            return fetch(url, { method: 'HEAD' })
-                .then(() => Date.now() - start)
-                .catch(() => '请求失败');
+            try {
+                await fetch(url, { method: 'HEAD', cache: 'no-store' });
+                return Date.now() - start;
+            } catch {
+                return -1; // 请求失败
+            }
         }
 
+        // 运行延迟测试
         async function runTests() {
             for (let i = 0; i < urls.length; i++) {
                 const [testUrl] = urls[i].split('#');
                 const latency = await testLatency(testUrl);
                 const latencySpan = document.getElementById(`latency${i}`);
-                if (typeof latency === 'number') {
+                latencyResults.push({ url: testUrl, latency });
+
+                if (latency >= 0) {
                     latencySpan.textContent = `${latency}ms`;
-                    latencySpan.style.color = latency <= 100 ? 'rgb(36, 170, 29)' : 'rgb(236, 70, 28)';
+                    latencySpan.className = latency <= 100
+                        ? 'latency-fast'
+                        : latency <= 200
+                        ? 'latency-medium'
+                        : 'latency-slow';
                 } else {
-                    latencySpan.textContent = latency;
+                    latencySpan.textContent = '请求失败';
+                    latencySpan.className = 'latency-error';
                 }
+            }
+
+            // 寻找最快的 CDN
+            const fastest = latencyResults.filter(r => r.latency >= 0)
+                                          .sort((a, b) => a.latency - b.latency)[0];
+
+            if (fastest) {
+                // 显示最快 CDN 名称
+                document.querySelector('.redirecting').textContent = `🚀 跳转至最快的 CDN：${fastest.url}`;
+                // 延时 2 秒后跳转
+                setTimeout(() => {
+                    window.location.href = fastest.url;
+                }, 2000);
+            } else {
+                document.querySelector('.redirecting').textContent = '❌ 无法访问所有 CDN。';
             }
         }
 
+        // 开始测速
         runTests();
     </script>
 </body>
