@@ -3,88 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>东方月初 - 涂山红红</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>CMLiussss Blog - CM喂饭干货满满</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://api.nicea.us.kg/api.php'); /* Background Image Link */
+            background-image: url('https://pic.imgdb.cn/item/66f6c978f21886ccc06c2337.jpg'); /* Background Image Link */
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
         }
-
+        
         .container {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 20px;
-            padding: 30px;
-            width: 360px;
-            min-height: 400px;
+            padding: 20px;
+            width: 450px;
+            height: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
         }
 
         h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-top: 15px;
-            margin-bottom: 15px;
             color: rgb(34, 30, 104);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
         .description {
-            font-size: 14px;
-            line-height: 1.5;
             color: rgb(34, 30, 104);
-            margin-bottom: 15px;
+            font-size: 17px;
+            line-height: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .minifont {
-            font-size: 12px;
-            font-weight: 600;
             color: rgb(34, 30, 104);
-            margin-top: 10px;
+            font-size: 11.9531px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         ul {
             list-style: none;
             padding: 0;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        li {
-            padding: 12px;
-            margin-bottom: 12px;
-            background-color: rgba(34, 30, 104, 0.1);
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s ease;
-        }
-
-        li:hover {
-            background-color: rgba(34, 30, 104, 0.2);
-        }
-
-        span {
-            font-weight: bold;
         }
 
         .latency {
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .latency-fast {
@@ -96,7 +75,7 @@
         }
 
         .latency-slow {
-            color: rgb(242, 118, 42);
+            color: rgb(246, 152, 51);
         }
 
         .latency-error {
@@ -109,100 +88,124 @@
             margin-left: 10px;
         }
 
-        .redirecting {
-            font-size: 15px;
-            font-weight: bold;
-            color: rgb(34, 30, 104);
-            margin-top: 20px;
-        }
-
-        .spinner {
-            margin-left: 10px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid #6bdf8f;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>BlogCDN 智能访问网关</h1>
         <ul class="description" id="urls"></ul>
-        <span class="minifont">📢东方月初~ 🤣涂山红红!!! 📈今日访问人数: <span id="visitCount">加载中...</span></span>
+        <span class="minifont">📢杨幂只是xp~ 🤣CM才是id!!! 📈今日访问人数:<span id="visitCount">加载中...</span></span>
     </div>
 
     <script>
-        // 获取访问人数
-        fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
-            .then((response) => response.json())
-            .then((data) => {
-                document.getElementById('visitCount').innerText = data.visitCount;
-            })
-            .catch(() => {
-                document.getElementById('visitCount').innerText = '加载失败';
-            });
+        // 通过fetch获取API并展示visitCount
+        fetch('https://tongji.090227.xyz/?id=blog.cmliussss.com')
+            .then(r => r.json()) // 转换为JSON
+            .then(d => document.getElementById('visitCount').innerText = d.visitCount) // 显示visitCount
+            .catch(e => document.getElementById('visitCount').innerText = '加载失败'); // 错误处理
 
-        const urls = [
-            "https://hexo.200038.xyz#Cloudflare CDN",
-            "https://vercel.hexo.200038.xyz#Vercel CDN",
-            "https://fastly.hexo.200038.xyz#Fastly CDN",
-            "https://www.weilai.us.kg#备用地址"
-        ];
-
+        const urls = ["https://blog.cmliussss.com#Cloudflare CDN",
+                      "https://fastly.blog.cmliussss.com#Fastly CDN",
+                      "https://gcore.blog.cmliussss.com#Gcore CDN",
+                      "https://vercel.blog.cmliussss.com#Vercel CDN",
+                      "https://xn--1uto7rutmzjk.us.kg#备用地址"];
+        
+        // 动态生成URL列表
         const ul = document.getElementById("urls");
         urls.forEach((url, index) => {
             const [testUrl, name] = url.split('#');
             const li = document.createElement("li");
             li.id = `result${index}`;
-            li.innerHTML = `${name} <span class="latency" id="latency${index}">测速中...</span>`;
+            li.innerHTML = `${name} <span id="latency${index}">测速中...</span>`;
             ul.appendChild(li);
         });
 
-        async function testLatency(url) {
-            const start = Date.now();
-            return fetch(url, { method: 'HEAD', cache: 'no-store' })
-                .then(() => Date.now() - start)
-                .catch(() => Infinity);
+        const timeout = 3000;
+
+        function testLatency(url) {
+            return new Promise((resolve) => {
+                const start = Date.now();
+                const xhr = new XMLHttpRequest();
+                xhr.open('HEAD', url, true);
+                xhr.timeout = timeout;
+
+                xhr.onload = function () {
+                    const latency = Date.now() - start;
+                    if (xhr.status === 200) {
+                        resolve({ url, latency });
+                    } else {
+                        resolve({ url, latency: `状态码: ${xhr.status}` });
+                    }
+                };
+
+                xhr.ontimeout = function () {
+                    resolve({ url, latency: `响应超时 ${timeout}ms` });
+                };
+
+                xhr.onerror = function () {
+                    resolve({ url, latency: '请求失败' });
+                };
+
+                xhr.send();
+            });
+        }
+
+        // 获取延迟的颜色
+        function getLatencyColor(latency) {
+            if (latency <= 100) return 'rgb(36, 170, 29)';
+            if (latency <= 200) return 'rgb(142, 161, 40)';
+            if (latency <= 500) return 'rgb(246, 152, 51)';
+            if (latency <= 1000) return 'rgb(242, 118, 42)';
+            if (latency > 1000) return 'rgb(236, 70, 28)';
+            return 'rgb(230, 22, 16)';  // 超时或错误
         }
 
         async function runTests() {
-            const results = await Promise.all(
-                urls.map((url, index) => {
-                    const [testUrl] = url.split('#');
-                    return testLatency(testUrl).then((latency) => {
-                        const latencySpan = document.getElementById(`latency${index}`);
-                        if (latency < Infinity) {
-                            latencySpan.textContent = `${latency}ms`;
-                            latencySpan.className = latency < 200 ? 'latency-fast' : latency < 500 ? 'latency-medium' : 'latency-slow';
-                        } else {
-                            latencySpan.textContent = '请求失败';
-                            latencySpan.className = 'latency-error';
-                        }
-                        return { url: testUrl, latency };
-                    });
-                })
-            );
+            const results = await Promise.all(urls.map(url => {
+                const [testUrl, name] = url.split('#');
+                return testLatency(testUrl).then(result => ({
+                    ...result,
+                    name
+                }));
+            }));
 
-            const fastest = results.reduce((prev, curr) => (curr.latency < prev.latency ? curr : prev), results[0]);
+            results.forEach((result, index) => {
+                const li = document.getElementById(`result${index}`);
+                const latencySpan = document.getElementById(`latency${index}`);
+                if (typeof result.latency === 'number') {
+                    latencySpan.textContent = `${result.latency}ms`;
+                    latencySpan.style.color = getLatencyColor(result.latency);
+                } else {
+                    latencySpan.textContent = result.latency;
+                    latencySpan.style.color = 'rgb(230, 22, 16)'; // 超时或错误用红色
+                }
+            });
 
-            // Adding checkmark to the fastest link
-            document.querySelector(`#result${results.indexOf(fastest)}`).classList.add('checkmark');
+            const validResults = results.filter(result => typeof result.latency === 'number');
+            if (validResults.length > 0) {
+                const fastest = validResults.reduce((prev, current) => (prev.latency < current.latency ? prev : current), validResults[0]);
 
-            // Adding a 3-second delay before redirect
-            setTimeout(() => {
-                window.location.href = fastest.url;
-            }, 3000); // 3000 ms = 3 seconds
+                // 标记最快的 CDN
+                results.forEach((result, index) => {
+                    if (result.name === fastest.name) {
+                        const li = document.getElementById(`result${index}`);
+                        li.innerHTML += ' ✅';
+                    }
+                });
+
+                // 302跳转到最快的地址并保留路径和参数
+                const currentPath = '/';
+                const currentParams = '';
+                const redirectUrl = fastest.url + currentPath + currentParams;
+
+                // 302 跳转
+                window.location.href = redirectUrl;
+            }
         }
 
         window.onload = runTests;
     </script>
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8e3e33d1cfb884ba","version":"2024.10.5","r":1,"token":"af762d42754b4ac482ddbabe3ca96bb8","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
 </body>
 </html>
