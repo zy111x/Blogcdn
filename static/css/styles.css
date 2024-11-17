@@ -1,104 +1,102 @@
+/* Global Styles */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('');
+    background: url('https://api.nicea.us.kg/api.php'); 
     background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
 }
 
+/* Container for Content with Gradient Background */
 .container {
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 20px;
-    padding: 20px; /* 减小内边距 */
-    width: 360px; /* 调整宽度 */
-    min-height: 400px; /* 设置最小高度 */
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b); /* Gradient background for container */
+    border-radius: 15px;
+    padding: 20px;
+    width: 380px;  /* Reduced width */
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.logo-container {
-    width: 150px; /* 缩小尺寸 */
-    height: 150px;
-    margin-bottom: 20px;
+/* Avatar Logo Styles */
+.avatar-container {
+    width: 100px; /* Reduced size */
+    height: 100px; /* Reduced size */
+    margin-bottom: 15px; /* Reduced margin */
+    position: relative;
 }
 
-.logo {
+.avatar {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 6px solid white; /* 调整边框 */
-    animation: blink 0.35s infinite;
+    border: 6px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
 }
 
-.status-dot {
-    width: 20px; /* 调整尺寸 */
-    height: 20px;
-    border: 7px solid #fff; /* 调整边框 */
-    transform: translate(25px, -80px); /* 根据尺寸重新调整位置 */
+/* Remove Flashing Gradient Border */
+.avatar-container:before {
+    content: ''; /* No content */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    /* Removed gradient and animation */
+    z-index: 0; /* Ensure the border is below the avatar */
 }
 
+/* Heading Styles */
 h1 {
-    font-size: 22px; /* 调整字体大小 */
-    font-weight: 700;
-    margin-top: 15px; /* 减小间距 */
-    margin-bottom: 15px;
     color: rgb(34, 30, 104);
+    font-size: 24px;  /* Reduced font size */
+    font-weight: bold;
     text-align: center;
+    margin-top: 10px;  /* Reduced margin */
+    margin-bottom: 15px; /* Reduced margin */
 }
 
+/* Description Styles */
 .description {
-    font-size: 14px; /* 调整字体大小 */
-    line-height: 1.5; /* 调整行距 */
     color: rgb(34, 30, 104);
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.minifont {
-    font-size: 12px;
-    font-weight: 600;
-    color: rgb(34, 30, 104);
-    margin-top: 10px;
+    font-size: 14px;  /* Reduced font size */
+    line-height: 20px;
+    font-weight: bold;
+    margin-bottom: 15px; /* Reduced margin */
     text-align: center;
 }
 
+/* URL List Styles */
 ul {
     list-style: none;
     padding: 0;
     width: 100%;
-    margin-bottom: 15px;
 }
 
 li {
-    padding: 8px; /* 缩小内边距 */
-    margin-bottom: 10px;
-    background-color: rgba(34, 30, 104, 0.1);
-    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.3s ease;
+    background-color: #f1f1f1;
+    padding: 8px;
+    margin-bottom: 8px;  /* Reduced margin */
+    border-radius: 8px;
+    font-size: 12px;  /* Reduced font size */
+    font-weight: 600;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-li:hover {
-    background-color: rgba(34, 30, 104, 0.2);
-}
-
-span {
+li .latency {
     font-weight: bold;
-}
-
-.latency {
-    font-size: 13px; /* 调整字体大小 */
 }
 
 .latency-fast {
@@ -110,7 +108,7 @@ span {
 }
 
 .latency-slow {
-    color: rgb(242, 118, 42);
+    color: rgb(246, 152, 51);
 }
 
 .latency-error {
@@ -119,24 +117,32 @@ span {
 
 .checkmark {
     color: #6bdf8f;
-    font-size: 18px; /* 缩小尺寸 */
-    margin-left: 10px;
+    font-size: 16px; /* Adjusted font size */
+    margin-left: 5px;  /* Reduced margin */
 }
 
-.redirecting {
-    font-size: 15px; /* 调整字体大小 */
-    font-weight: bold;
+/* Visit Count Text */
+.minifont {
     color: rgb(34, 30, 104);
-    margin-top: 20px;
+    font-size: 11px; /* Reduced font size */
+    font-weight: bold;
     text-align: center;
+    margin-top: 10px; /* Reduced margin */
 }
 
-.spinner {
-    margin-left: 10px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #6bdf8f;
-    border-radius: 50%;
-    width: 16px; /* 缩小尺寸 */
-    height: 16px;
-    animation: spin 1s linear infinite;
+/* Button Styles */
+.refresh-button {
+    background-color: #6bdf8f;
+    color: white;
+    padding: 8px 15px; /* Adjusted padding */
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px; /* Reduced margin */
+}
+
+.refresh-button:hover {
+    background-color: #55c678;
 }
