@@ -4,121 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>东方月初 - 涂山红红</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://api.nicea.us.kg/api.php');
+            background-image: url('');
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            color: #fff;
         }
-        .description {
-            color: rgb(34, 30, 104);
-            font-size: 17px;
-            line-height: 25px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .minifont {
-            color: rgb(34, 30, 104);
-            font-size: 11.9531px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+
         .container {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             padding: 20px;
-            width: 450px;
-            height: 600px;
+            width: 360px;
+            min-height: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
+
         .logo-container {
-            width: 170px;
-            height: 170px;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
         }
+
         .logo {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 7px solid white;
+            border: 6px solid white;
             animation: blink 0.35s infinite;
         }
+
         .status-dot {
-            width: 30px;
-            height: 30px;
-            background: #6bdf8f;
-            border-radius: 50%;
-            border: 10px solid #fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(32px, -90px);
+            width: 20px;
+            height: 20px;
+            border: 7px solid #fff;
+            transform: translate(25px, -80px);
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+
         h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 15px;
             color: rgb(34, 30, 104);
-            font-size: 24px;
-            font-weight: bold;
             text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
         }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: rgb(34, 30, 104);
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .minifont {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgb(34, 30, 104);
+            margin-top: 10px;
+            text-align: center;
+        }
+
         ul {
             list-style: none;
             padding: 0;
+            width: 100%;
+            margin-bottom: 15px;
         }
 
-        /* Footer Styles */
-        .footer {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            background-color: #333;
-            color: white;
+        li {
+            padding: 8px;
+            margin-bottom: 10px;
+            background-color: rgba(34, 30, 104, 0.1);
+            border-radius: 8px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            flex-direction: column;
-            overflow: hidden;
+            transition: background-color 0.3s ease;
         }
 
-        #jsi-flying-fish-container {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100px;
-            z-index: 9999;
+        li:hover {
+            background-color: rgba(34, 30, 104, 0.2);
         }
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        span {
+            font-weight: bold;
         }
 
-        .container {
-            flex-grow: 1;
+        .latency {
+            font-size: 13px;
         }
-    </style>    
+
+        .latency-fast {
+            color: rgb(36, 170, 29);
+        }
+
+        .latency-medium {
+            color: rgb(142, 161, 40);
+        }
+
+        .latency-slow {
+            color: rgb(242, 118, 42);
+        }
+
+        .latency-error {
+            color: rgb(236, 70, 28);
+        }
+
+        .checkmark {
+            color: #6bdf8f;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .redirecting {
+            font-size: 15px;
+            font-weight: bold;
+            color: rgb(34, 30, 104);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .spinner {
+            margin-left: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #6bdf8f;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -132,136 +167,63 @@
     </div>
 
     <script>
-        // 通过fetch获取API并展示visitCount
+        // 获取访问人数
         fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
-            .then(r => r.json())  // 转换为JSON
-            .then(d => document.getElementById('visitCount').innerText = d.visitCount)  // 显示visitCount
-            .catch(e => document.getElementById('visitCount').innerText = '加载失败');  // 错误处理
+            .then((response) => response.json())
+            .then((data) => {
+                document.getElementById('visitCount').innerText = data.visitCount;
+            })
+            .catch(() => {
+                document.getElementById('visitCount').innerText = '加载失败';
+            });
 
         const urls = [
             "https://hexo.200038.xyz#Cloudflare CDN",
             "https://vercel.hexo.200038.xyz#Vercel CDN",
             "https://fastly.hexo.200038.xyz#Fastly CDN",
             "https://www.weilai.us.kg#备用地址"
-
         ];
 
-        // 动态生成URL列表
         const ul = document.getElementById("urls");
         urls.forEach((url, index) => {
             const [testUrl, name] = url.split('#');
             const li = document.createElement("li");
             li.id = `result${index}`;
-            li.innerHTML = `${name} <span id="latency${index}">测速中...</span>`;
+            li.innerHTML = `${name} <span class="latency" id="latency${index}">测速中...</span>`;
             ul.appendChild(li);
         });
 
-        const timeout = 3000;
-
-        function testLatency(url) {
-            return new Promise((resolve) => {
-                const start = Date.now();
-                const xhr = new XMLHttpRequest();
-                xhr.open('HEAD', url, true);
-                xhr.timeout = timeout;
-
-                xhr.onload = function () {
-                    const latency = Date.now() - start;
-                    if (xhr.status === 200) {
-                        resolve({ url, latency });
-                    } else {
-                        resolve({ url, latency: `状态码: ${xhr.status}` });
-                    }
-                };
-
-                xhr.ontimeout = function () {
-                    resolve({ url, latency: `响应超时 ${timeout}ms` });
-                };
-
-                xhr.onerror = function () {
-                    resolve({ url, latency: '请求失败' });
-                };
-
-                xhr.send();
-            });
-        }
-
-        // 获取延迟的颜色
-        function getLatencyColor(latency) {
-            if (latency <= 100) return 'rgb(36, 170, 29)';
-            if (latency <= 200) return 'rgb(142, 161, 40)';
-            if (latency <= 500) return 'rgb(246, 152, 51)';
-            if (latency <= 1000) return 'rgb(242, 118, 42)';
-            if (latency > 1000) return 'rgb(236, 70, 28)';
-            return 'rgb(230, 22, 16)';  // 超时或错误
+        async function testLatency(url) {
+            const start = Date.now();
+            return fetch(url, { method: 'HEAD', cache: 'no-store' })
+                .then(() => Date.now() - start)
+                .catch(() => Infinity);
         }
 
         async function runTests() {
-            const results = await Promise.all(urls.map(url => {
-                const [testUrl, name] = url.split('#');
-                return testLatency(testUrl).then(result => ({
-                    ...result,
-                    name
-                }));
-            }));
+            const results = await Promise.all(
+                urls.map((url, index) => {
+                    const [testUrl] = url.split('#');
+                    return testLatency(testUrl).then((latency) => {
+                        const latencySpan = document.getElementById(`latency${index}`);
+                        if (latency < Infinity) {
+                            latencySpan.textContent = `${latency}ms`;
+                            latencySpan.className = latency < 200 ? 'latency-fast' : latency < 500 ? 'latency-medium' : 'latency-slow';
+                        } else {
+                            latencySpan.textContent = '请求失败';
+                            latencySpan.className = 'latency-error';
+                        }
+                        return { url: testUrl, latency };
+                    });
+                })
+            );
 
-            results.forEach((result, index) => {
-                const li = document.getElementById(`result${index}`);
-                const latencySpan = document.getElementById(`latency${index}`);
-                if (typeof result.latency === 'number') {
-                    latencySpan.textContent = `${result.latency}ms`;
-                    latencySpan.style.color = getLatencyColor(result.latency);
-                } else {
-                    latencySpan.textContent = result.latency;
-                    latencySpan.style.color = 'rgb(230, 22, 16)'; // 超时或错误用红色
-                }
-            });
-
-            const validResults = results.filter(result => typeof result.latency === 'number');
-            if (validResults.length > 0) {
-                const fastest = validResults.reduce((prev, current) => (prev.latency < current.latency ? prev : current), validResults[0]);
-
-                // 标记最快的 CDN
-                results.forEach((result, index) => {
-                    if (result.name === fastest.name) {
-                        const li = document.getElementById(`result${index}`);
-                        li.innerHTML += ' ✅';
-                    }
-                });
-
-                // 302跳转到最快的地址并保留路径和参数
-                const currentPath = '/';
-                const currentParams = '';
-                const redirectUrl = fastest.url + currentPath + currentParams;
-
-                // 302 跳转
-                window.location.href = redirectUrl;
-            }
+            const fastest = results.reduce((prev, curr) => (curr.latency < prev.latency ? curr : prev), results[0]);
+            document.querySelector(`#urls li`).classList.add('checkmark');
+            window.location.href = fastest.url;
         }
 
         window.onload = runTests;
     </script>
-
-    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/jq.js"></script>
-    <div class="st-Container">
-        <a style="display:none" class="st-Menu closed" id="st-Menu" href="javascript:void(0);"></a>
-    </div>
-    <div class="sw-Hennnyano" id="sw-Hennnyano">
-        <div class="layer body w100" data-depth="0.1"></div>
-        <div class="layer eyes w100" data-depth="0.2"></div>
-    </div>
-    
-    <!-- Footer section -->
-    <div class="footer">
-        <!-- Your footer content can go here -->
-
-    <span>© 2024 东方月初. All Rights Reserved.</span>
-
-
-        <!-- Flying fish container -->
-        <div id="jsi-flying-fish-container" class="fish-container"></div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/gh/niceao/Alist@main/fish.js"></script>
 </body>
 </html>
