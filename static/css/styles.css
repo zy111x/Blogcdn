@@ -4,168 +4,86 @@
     padding: 0;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://serv.200038.xyz/2024/09/19/481552.webp');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-}
 
-.container {
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 20px;
-    padding: 30px;
-    width: 450px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-.logo-container {
-    width: 180px;
-    height: 180px;
-    margin-bottom: 20px;
-}
-
-.logo {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 7px solid white;
-    animation: blink 0.35s infinite;
-}
-
-.status-dot {
-    width: 30px;
-    height: 30px;
-    background: #6bdf8f;
-    border-radius: 50%;
-    border: 10px solid #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(32px, -90px);
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-}
-
-h1 {
-    font-size: 26px;
-    font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: rgb(34, 30, 104);
-    text-align: center;
-}
-
-.description {
-    font-size: 15px;
-    line-height: 1.6;
-    color: rgb(34, 30, 104);
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.minifont {
-    font-size: 12px;
-    font-weight: 600;
-    color: rgb(34, 30, 104);
-    margin-top: 10px;
-    text-align: center;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-li {
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: rgba(34, 30, 104, 0.1);
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease;
-}
-
-li:hover {
-    background-color: rgba(34, 30, 104, 0.2);
-}
-
-span {
-    font-weight: bold;
-}
-
-.latency {
-    font-size: 14px;
-}
-
-.latency-fast {
-    color: rgb(36, 170, 29);
-}
-
-.latency-medium {
-    color: rgb(142, 161, 40);
-}
-
-.latency-slow {
-    color: rgb(242, 118, 42);
-}
-
-.latency-error {
-    color: rgb(236, 70, 28);
-}
-
-.checkmark {
-    color: #6bdf8f;
-    font-size: 20px;
-    margin-left: 10px;
-}
-
-.redirecting {
-    font-size: 16px;
-    font-weight: bold;
-    color: rgb(34, 30, 104);
-    margin-top: 30px;
-    text-align: center;
-}
-
-.spinner {
-    margin-left: 10px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #6bdf8f;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                    background: url('${randomBackgroundAPI}') no-repeat center center fixed;
+                    background-size: cover;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    overflow: hidden;
+                }
+                .container {
+                    backdrop-filter: blur(10px);
+                    background: rgba(0, 0, 0, 0.5);
+                    padding: 20px;
+                    border-radius: 15px;
+                    text-align: center;
+                    width: 90%;
+                    max-width: 450px;
+                }
+                .avatar {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    margin: 0 auto 20px;
+                    background: url('${avatarURL}') no-repeat center center;
+                    background-size: cover;
+                    border: 3px solid #fff;
+                }
+                .title {
+                    font-size: 26px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+                }
+                .cdn-item {
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 15px;
+                    margin: 10px 0;
+                    border-radius: 8px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 18px;
+                    transition: background 0.3s, transform 0.3s;
+                }
+                .cdn-item:hover {
+                    transform: translateY(-5px);
+                    background: rgba(255, 255, 255, 0.3);
+                }
+                .cdn-item.fastest {
+                    background: rgba(0, 255, 0, 0.3);
+                    border: 2px solid #0f0;
+                }
+                .footer {
+                    margin-top: 30px;
+                    font-size: 12px;
+                    color: #ccc;
+                }
+                .redirecting {
+                    margin-top: 10px;
+                    font-size: 14px;
+                    color: #ffcc00;
+                }
+                .button {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 12px 24px;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    margin-top: 20px;
+                    transition: background 0.3s;
+                    position: relative; /* Ensure the button is positioned above */
+                    z-index: 1; /* Higher z-index to make the button clickable */
+                }
+                .button:hover {
+                    background-color: #45a049;
+                }
