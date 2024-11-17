@@ -14,10 +14,10 @@ body {
 
 /* Container for Content with Gradient Background */
 .container {
-    background: linear-gradient(to bottom, #ff7e5f, #feb47b); /* Gradient background for container */
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b);
     border-radius: 15px;
     padding: 20px;
-    width: 380px;  /* Reduced width */
+    width: 380px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -27,9 +27,9 @@ body {
 
 /* Avatar Logo Styles */
 .avatar-container {
-    width: 100px; /* Reduced size */
-    height: 100px; /* Reduced size */
-    margin-bottom: 15px; /* Reduced margin */
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
     position: relative;
 }
 
@@ -42,36 +42,23 @@ body {
     object-fit: cover;
 }
 
-/* Remove Flashing Gradient Border */
-.avatar-container:before {
-    content: ''; /* No content */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-    /* Removed gradient and animation */
-    z-index: 0; /* Ensure the border is below the avatar */
-}
-
 /* Heading Styles */
 h1 {
     color: rgb(34, 30, 104);
-    font-size: 24px;  /* Reduced font size */
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
-    margin-top: 10px;  /* Reduced margin */
-    margin-bottom: 15px; /* Reduced margin */
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 /* Description Styles */
 .description {
     color: rgb(34, 30, 104);
-    font-size: 14px;  /* Reduced font size */
+    font-size: 14px;
     line-height: 20px;
     font-weight: bold;
-    margin-bottom: 15px; /* Reduced margin */
+    margin-bottom: 15px;
     text-align: center;
 }
 
@@ -88,9 +75,9 @@ li {
     align-items: center;
     background-color: #f1f1f1;
     padding: 8px;
-    margin-bottom: 8px;  /* Reduced margin */
+    margin-bottom: 8px;
     border-radius: 8px;
-    font-size: 12px;  /* Reduced font size */
+    font-size: 12px;
     font-weight: 600;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
@@ -117,30 +104,30 @@ li .latency {
 
 .checkmark {
     color: #6bdf8f;
-    font-size: 16px; /* Adjusted font size */
-    margin-left: 5px;  /* Reduced margin */
+    font-size: 16px;
+    margin-left: 5px;
 }
 
 /* Visit Count Text */
 .minifont {
     color: rgb(34, 30, 104);
-    font-size: 11px; /* Reduced font size */
+    font-size: 11px;
     font-weight: bold;
     text-align: center;
-    margin-top: 10px; /* Reduced margin */
+    margin-top: 10px;
 }
 
 /* Button Styles */
 .refresh-button {
     background-color: #6bdf8f;
     color: white;
-    padding: 8px 15px; /* Adjusted padding */
+    padding: 8px 15px;
     border-radius: 5px;
     font-weight: bold;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 15px; /* Reduced margin */
+    margin-top: 15px;
 }
 
 .refresh-button:hover {
