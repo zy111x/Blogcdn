@@ -11,6 +11,3 @@ This project is an intelligent gateway to select the fastest CDN based on latenc
 1. Clone this repository.
 2. Host the project on your web server or locally.
 3. Ensure all assets are correctly linked and served.
-
-## License
-This project is licensed under the MIT License.
