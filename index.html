@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>东方月初 - 涂山红红</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://serv.200038.xyz/2024/09/19/background.webp'); /* 替换为你的背景图链接 */
+            background-image: url('https://api.nicea.us.kg/api.php');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -43,15 +42,12 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 6px solid white;
             animation: blink 0.35s infinite;
         }
 
-        .status-dot {
-            width: 20px;
-            height: 20px;
-            border: 7px solid #fff;
-            transform: translate(25px, -80px);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
         h1 {
@@ -60,22 +56,6 @@
             margin-top: 15px;
             margin-bottom: 15px;
             color: rgb(34, 30, 104);
-            text-align: center;
-        }
-
-        .description {
-            font-size: 14px;
-            line-height: 1.5;
-            color: rgb(34, 30, 104);
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .minifont {
-            font-size: 12px;
-            font-weight: 600;
-            color: rgb(34, 30, 104);
-            margin-top: 10px;
             text-align: center;
         }
 
@@ -125,12 +105,6 @@
             color: rgb(236, 70, 28);
         }
 
-        .checkmark {
-            color: #6bdf8f;
-            font-size: 18px;
-            margin-left: 10px;
-        }
-
         .redirecting {
             font-size: 15px;
             font-weight: bold;
@@ -150,8 +124,8 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -159,23 +133,20 @@
     <div class="container">
         <div class="logo-container">
             <img class="logo" src="https://serv.200038.xyz/2024/09/19/040857.webp" alt="Logo">
-            <div class="status-dot"></div>
         </div>
         <h1>BlogCDN 智能访问网关</h1>
-        <ul class="description" id="urls"></ul>
-        <span class="minifont">📢东方月初~ 🤣涂山红红!!! 📈今日访问人数: <span id="visitCount">加载中...</span></span>
+        <ul id="urls"></ul>
+        <div class="redirecting">
+            📢 东方月初 ~ 涂山红红! 今日访问人数: <span id="visitCount">加载中...</span>
+        </div>
     </div>
 
     <script>
-        // 获取访问人数
+        // 动态加载访问人数
         fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
-            .then((response) => response.json())
-            .then((data) => {
-                document.getElementById('visitCount').innerText = data.visitCount;
-            })
-            .catch(() => {
-                document.getElementById('visitCount').innerText = '加载失败';
-            });
+            .then(r => r.json())
+            .then(d => document.getElementById('visitCount').innerText = d.visitCount)
+            .catch(e => document.getElementById('visitCount').innerText = '加载失败');
 
         const urls = [
             "https://hexo.200038.xyz#Cloudflare CDN",
@@ -188,42 +159,32 @@
         urls.forEach((url, index) => {
             const [testUrl, name] = url.split('#');
             const li = document.createElement("li");
-            li.id = `result${index}`;
-            li.innerHTML = `${name} <span class="latency" id="latency${index}">测速中...</span>`;
+            li.innerHTML = `${name} <span id="latency${index}">测速中...</span>`;
             ul.appendChild(li);
         });
 
         async function testLatency(url) {
             const start = Date.now();
-            return fetch(url, { method: 'HEAD', cache: 'no-store' })
+            return fetch(url, { method: 'HEAD' })
                 .then(() => Date.now() - start)
-                .catch(() => Infinity);
+                .catch(() => '请求失败');
         }
 
         async function runTests() {
-            const results = await Promise.all(
-                urls.map((url, index) => {
-                    const [testUrl] = url.split('#');
-                    return testLatency(testUrl).then((latency) => {
-                        const latencySpan = document.getElementById(`latency${index}`);
-                        if (latency < Infinity) {
-                            latencySpan.textContent = `${latency}ms`;
-                            latencySpan.className = latency < 200 ? 'latency-fast' : latency < 500 ? 'latency-medium' : 'latency-slow';
-                        } else {
-                            latencySpan.textContent = '请求失败';
-                            latencySpan.className = 'latency-error';
-                        }
-                        return { url: testUrl, latency };
-                    });
-                })
-            );
-
-            const fastest = results.reduce((prev, curr) => (curr.latency < prev.latency ? curr : prev), results[0]);
-            document.querySelector(`#urls li`).classList.add('checkmark');
-            window.location.href = fastest.url;
+            for (let i = 0; i < urls.length; i++) {
+                const [testUrl] = urls[i].split('#');
+                const latency = await testLatency(testUrl);
+                const latencySpan = document.getElementById(`latency${i}`);
+                if (typeof latency === 'number') {
+                    latencySpan.textContent = `${latency}ms`;
+                    latencySpan.style.color = latency <= 100 ? 'rgb(36, 170, 29)' : 'rgb(236, 70, 28)';
+                } else {
+                    latencySpan.textContent = latency;
+                }
+            }
         }
 
-        window.onload = runTests;
+        runTests();
     </script>
 </body>
 </html>
