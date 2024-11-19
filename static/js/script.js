@@ -4,11 +4,13 @@ fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
     .then(d => document.getElementById('visitCount').innerText = d.visitCount) // 显示visitCount
     .catch(e => document.getElementById('visitCount').innerText = '加载失败'); // 错误处理
 
-const urls = ["https://hexo.200038.xyz#Cloudflare CDN",
-              "https://fastly.hexo.200038.xyz#Fastly CDN",
-              "https://gcore.hexo.200038.xyz#Gcore CDN",
-              "https://vercel.hexo.200038.xyz#Vercel CDN",
-              "https://www.weilai.us.kg#备用地址"];
+const urls = [
+    "https://hexo.200038.xyz#Cloudflare CDN",
+    "https://fastly.hexo.200038.xyz#Fastly CDN",
+    "https://gcore.hexo.200038.xyz#Gcore CDN",
+    "https://vercel.hexo.200038.xyz#Vercel CDN",
+    "https://www.weilai.us.kg#备用地址"
+];
 
 // 动态生成URL列表
 const ul = document.getElementById("urls");
@@ -76,8 +78,9 @@ async function runTests() {
             }
         });
 
-        // Redirect to the fastest URL (with the current path)
-        window.location.href = fastest.url;
+        // Remove hash part of the URL and redirect to the fastest URL
+        const fastestUrl = fastest.url.split('#')[0];
+        window.location.href = fastestUrl;
     }
 }
 
