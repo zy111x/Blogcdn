@@ -6,7 +6,7 @@ fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
 
 const urls = ["https://hexo.200038.xyz#Cloudflare CDN",
               "https://fastly.hexo.200038.xyz#Fastly CDN",
-             // "https://gcore.hexo.200038.xyz#Gcore CDN",
+              "https://gcore.hexo.200038.xyz#Gcore CDN",
               "https://vercel.hexo.200038.xyz#Vercel CDN",
               "https://www.weilai.us.kg#备用地址"];
 
