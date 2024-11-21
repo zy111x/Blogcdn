@@ -9,7 +9,7 @@ const urls = [
     "https://fastly.hexo.200038.xyz#Fastly CDN",
     "https://gcore.hexo.200038.xyz#Gcore CDN",
     "https://vercel.hexo.200038.xyz#Vercel CDN",
-    "https://www.weilai.us.kg#备用地址"
+    "https://weilai.us.kg#备用地址"
 ];
 
 // 动态生成URL列表
