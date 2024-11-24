@@ -1,15 +1,15 @@
 // 通过fetch获取API并展示visitCount
-fetch('https://tongji.090227.xyz/?id=hexo.200038.xyz')
+fetch('https://tongji.090227.xyz/?id=blog.200038.xyz')
     .then(r => r.json()) // 转换为JSON
     .then(d => document.getElementById('visitCount').innerText = d.visitCount) // 显示visitCount
     .catch(e => document.getElementById('visitCount').innerText = '加载失败'); // 错误处理
 
 const urls = [
-    "https://hexo.200038.xyz#Cloudflare CDN",
-    "https://fastly.hexo.200038.xyz#Fastly CDN",
+    "https://blog.4evercurry.us.kg#Cloudflare CDN",
+    "https://fastly.blog.291055.xyz#Fastly CDN",
     "https://gcore.hexo.200038.xyz#Gcore CDN",
-    "https://vercel.hexo.200038.xyz#Vercel CDN",
-    "https://xn--yhq50f2v6f.us.kg#备用地址"
+    "https://blog.291055.xyz#Vercel CDN",
+    "https://zy111x-github-io.pages.dev#备用地址"
 ];
 
 // 动态生成URL列表
