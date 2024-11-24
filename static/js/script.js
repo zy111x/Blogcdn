@@ -7,7 +7,7 @@ fetch('https://tongji.090227.xyz/?id=blog.200038.xyz')
 const urls = [
     "https://blog.4evercurry.us.kg#Cloudflare CDN",
     "https://fastly.blog.291055.xyz#Fastly CDN",
-    "https://gcore.hexo.200038.xyz#Gcore CDN",
+    "https://gcore.blog.291055.xyz#Gcore CDN",
     "https://blog.291055.xyz#Vercel CDN",
     "https://zy111x-github-io.pages.dev#备用地址"
 ];
